@@ -18,7 +18,7 @@ passport.use(new GoogleStrategy ({
 	User.findOne({googleId:profile.id}).then((currentUser)=>{
 
 		if(currentUser){
-			//if exsist user 
+			//if exsist user in our db
 			console.log('user exist and details is :' + currentUser)
 		}else{
 			// if user not in our db then save the user in our db
