@@ -48,7 +48,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 app.listen(port)
-console.log(`server listen -> ${port}`)
+//console.log(`server listen -> ${port}`)
 
 app.get('/', (req, res) => {
     res.render('index',{user:req.user})
