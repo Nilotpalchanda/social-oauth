@@ -17,5 +17,8 @@
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
     "save": "^2.3.2"
+  },
+  "script": {
+    "start": "node app.js"
   }
 }
