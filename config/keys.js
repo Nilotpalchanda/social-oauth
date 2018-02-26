@@ -5,8 +5,8 @@ module.exports = {
     //google autenticate key
     google: {
 
-        clientID: '352813101130-ki77gpp8ae51nhf45a3dim9shgatdlvh.apps.googleusercontent.com',
-        clientSecret: 'VtdeCLZEc3oe9X9PX37frJBB'
+        clientID: '688100053480-npbg0pnpgng6biepf2evvloa3khu03f4.apps.googleusercontent.com',
+        clientSecret: 'ZTTtb47aLkxvvQYQ0n6fZ-qA'
     },
 
     //mongodb db connection url with password
