@@ -32,6 +32,11 @@ router.get('/twitter', passport.authenticate('twitter', {
 }))
 
 
+//instagram
+router.get('/instagram', passport.authenticate('instagram'));
+
+
+
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
     //res.send('you reach the callback URI')
     res.redirect('/profile/')
@@ -43,6 +48,11 @@ router.get('/github/callback', passport.authenticate('github'), (req, res) => {
 })
 
 router.get('/twitter/callback', passport.authenticate('twitter'), (req, res) => {
+    //res.send('you reach the callback URI')
+    res.redirect('/profile/')
+})
+
+router.get('/instagram/callback', passport.authenticate('instagram'), (req, res) => {
     //res.send('you reach the callback URI')
     res.redirect('/profile/')
 })

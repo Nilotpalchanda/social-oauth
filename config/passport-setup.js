@@ -2,6 +2,7 @@ const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20')
 const GitHubStrategy = require('passport-github').Strategy;
 const TwitterStrategy = require('passport-twitter').Strategy;
+const InstagramStrategy = require('passport-instagram').Strategy;
 const keys = require('./keys')
 const User = require('../models/user-model')
 
@@ -129,3 +130,35 @@ passport.use(new TwitterStrategy({
 
 
   }));
+
+//instagram
+passport.use(new InstagramStrategy({
+    clientID: '139dcdc4955c4eb09f3a4a4ca05b8340',
+    clientSecret: '39c3a0e4ca744502807412d2b19f5d1e',
+    callbackURL: "https://socialoauthnode.herokuapp.com/auth/instagram/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    console.log(profile)
+              User.findOne({ instagramId: profile.id }).then((currentUser) => {
+
+        if (currentUser) {
+            //if exsist user in our db
+            console.log('user exist and details is :' + currentUser)
+
+            done(null,currentUser)
+        } else {
+            // if user not in our db then save the user in our db
+            new User({
+                username: profile.displayName,
+                instagramId: profile.id,
+                thumbnail:profile._json.data.profile_picture
+            }).save().then((newUser) => {
+                console.log('new user created: ' + newUser)
+                done(null,newUser)
+            })
+
+        }
+
+    })
+  }
+));
