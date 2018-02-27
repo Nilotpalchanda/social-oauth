@@ -8,6 +8,14 @@ module.exports = {
         clientID: '688100053480-npbg0pnpgng6biepf2evvloa3khu03f4.apps.googleusercontent.com',
         clientSecret: 'ZTTtb47aLkxvvQYQ0n6fZ-qA'
     },
+    
+    // github
+
+    github:{
+      
+    clientID: 'ac5235f3862841dc826c',
+    clientSecret: '4a7de666c57f6c0a73e1b2a683988d3cfc22c76f'
+    },
 
     //mongodb db connection url with password
     mongodb: {
@@ -15,6 +23,7 @@ module.exports = {
         dbURI: 'mongodb://admin:test@ds147668.mlab.com:47668/oauthapp'
 
     },
+
 
     //cookie key
     session:{

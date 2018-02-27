@@ -1,5 +1,6 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20')
+const GitHubStrategy = require('passport-github').Strategy;
 const keys = require('./keys')
 const User = require('../models/user-model')
 
@@ -57,3 +58,43 @@ passport.use(new GoogleStrategy({
     })
 
 }))
+
+// github
+
+passport.use(new GitHubStrategy({
+    clientID: 'ac5235f3862841dc826c',
+    clientSecret: '4a7de666c57f6c0a73e1b2a683988d3cfc22c76f',
+    callbackURL: 'https://socialoauthnode.herokuapp.com/auth/github/callback'
+  },
+
+
+  function(accessToken, refreshToken, profile, done) {
+    console.log(profile);
+    
+      User.findOne({ githubId: profile.id }).then((currentUser) => {
+
+        if (currentUser) {
+            //if exsist user in our db
+            console.log('user exist and details is :' + currentUser)
+
+            done(null,currentUser)
+        } else {
+            // if user not in our db then save the user in our db
+            new User({
+                username: profile.displayName,
+                githubId: profile.id,
+                thumbnail:profile._json.avatar_url
+            }).save().then((newUser) => {
+                console.log('new user created: ' + newUser)
+                done(null,newUser)
+            })
+
+        }
+
+    })
+
+
+
+
+
+  }));

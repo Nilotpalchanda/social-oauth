@@ -20,9 +20,23 @@ router.get('/google', passport.authenticate('google', {
     scope: ['profile']
 }))
 
+//github
+
+router.get('/github', passport.authenticate('github', {
+    scope: ['profile']
+}))
+
+
+
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
     //res.send('you reach the callback URI')
     res.redirect('/profile/')
 })
+
+router.get('/github/callback', passport.authenticate('github'), (req, res) => {
+    //res.send('you reach the callback URI')
+    res.redirect('/profile/')
+})
+
 
 module.exports = router
