@@ -26,6 +26,10 @@ router.get('/github', passport.authenticate('github', {
     scope: ['profile']
 }))
 
+//twitter
+router.get('/twitter', passport.authenticate('twitter', {
+    scope: ['profile']
+}))
 
 
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
@@ -34,6 +38,11 @@ router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
 })
 
 router.get('/github/callback', passport.authenticate('github'), (req, res) => {
+    //res.send('you reach the callback URI')
+    res.redirect('/profile/')
+})
+
+router.get('/twitter/callback', passport.authenticate('twitter'), (req, res) => {
     //res.send('you reach the callback URI')
     res.redirect('/profile/')
 })

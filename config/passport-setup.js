@@ -1,6 +1,7 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20')
 const GitHubStrategy = require('passport-github').Strategy;
+const TwitterStrategy = require('passport-twitter').Strategy;
 const keys = require('./keys')
 const User = require('../models/user-model')
 
@@ -93,8 +94,38 @@ passport.use(new GitHubStrategy({
 
     })
 
+  }));
 
+//twitter
 
+passport.use(new TwitterStrategy({
+    consumerKey: '4thdI7cygRTQzR2OKuKmqDSS1',
+    consumerSecret: 'wbJbInZooOdZsLgL9FbnAUgGNeGhpx1i7x9cDNJEO6crAD4jiM',
+    callbackURL: "https://socialoauthnode.herokuapp.com/auth/twitter/callback"
+  },
+  function(token, tokenSecret, profile, done) {
+        console.log(profile)
+          User.findOne({ twitterId: profile.id }).then((currentUser) => {
+
+        if (currentUser) {
+            //if exsist user in our db
+            console.log('user exist and details is :' + currentUser)
+
+            done(null,currentUser)
+        } else {
+            // if user not in our db then save the user in our db
+            new User({
+                username: profile.displayName,
+                twitterId: profile.id,
+                thumbnail:profile.photos[0].value
+            }).save().then((newUser) => {
+                console.log('new user created: ' + newUser)
+                done(null,newUser)
+            })
+
+        }
+
+    })
 
 
   }));

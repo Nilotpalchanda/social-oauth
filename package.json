@@ -4,19 +4,18 @@
   "description": "Create social auth",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Nilotpalchanda/social-oauth.git"
   },
   "author": "Nilotpal chanda",
-  "license": "MIT",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/Nilotpalchanda/social-oauth/issues"
   },
   "homepage": "https://github.com/Nilotpalchanda/social-oauth#readme",
-  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
     "cookie-session": "^2.0.0-beta.3",
@@ -24,11 +23,9 @@
     "express": "^4.16.2",
     "mongoose": "^5.0.7",
     "passport": "^0.4.0",
-    "passport-google-oauth20": "^1.0.0",
     "passport-github": "^1.1.0",
+    "passport-google-oauth20": "^1.0.0",
+    "passport-twitter": "^1.0.4",
     "save": "^2.3.2"
-  },
-  "scripts": {
-    "start": "node app.js"
   }
 }
